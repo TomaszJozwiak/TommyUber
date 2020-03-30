@@ -2,6 +2,7 @@ package com.example.tommyuber;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
@@ -12,8 +13,16 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 public class MainActivity extends AppCompatActivity {
+
+    public void redirectActivity() {
+        if (ParseUser.getCurrentUser().get("riderOrDriver").equals("rider")) {
+            Intent intent = new Intent(getApplicationContext(), RiderActivity.class);
+            startActivity(intent);
+        }
+    }
 
     public void getStarted(View view) {
 
@@ -26,7 +35,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ParseUser.getCurrentUser().put("riderOrDriver", userType);
-        // redirect as rider or driver
+        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                redirectActivity();
+            }
+        });
+
     }
 
     @Override
@@ -49,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             });
         } else {
             if (ParseUser.getCurrentUser().get("riderOrDriver") != null) {
-                // redirect as rider or driver
+                redirectActivity();
             }
         }
 
