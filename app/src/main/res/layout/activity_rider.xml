@@ -18,4 +18,14 @@
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"/>
 
+    <Button
+        android:id="@+id/logoutButton"
+        android:onClick="logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:text="Logout"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"/>
+
 </fragment>
