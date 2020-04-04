@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public void getStarted(View view) {
 
         Switch userTypeSwitch = (Switch) findViewById(R.id.userTypeSwitch);
-        Toast.makeText(this, String.valueOf(userTypeSwitch.isChecked()), Toast.LENGTH_SHORT).show();
 
         String userType = "rider";
         if (userTypeSwitch.isChecked()) {
@@ -58,11 +57,6 @@ public class MainActivity extends AppCompatActivity {
             ParseAnonymousUtils.logIn(new LogInCallback() {
                 @Override
                 public void done(ParseUser user, ParseException e) {
-                    if (e == null) {
-                        Toast.makeText(MainActivity.this, "Anonymous login successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Anonymous login failed!", Toast.LENGTH_SHORT).show();
-                    }
                 }
             });
         } else {

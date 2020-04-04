@@ -34,6 +34,12 @@ public class DriverLocationActivity extends FragmentActivity implements OnMapRea
     private GoogleMap mMap;
     Intent intent;
 
+    public void logout(View view) {
+        ParseUser.logOut();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+
     public void acceptRequest(View view) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
         query.whereEqualTo("username", intent.getStringExtra("username"));
